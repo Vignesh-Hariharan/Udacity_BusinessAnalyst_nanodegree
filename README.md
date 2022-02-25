@@ -1,1 +1,1 @@
-# Udacity_BusinessAnalyst_nanodegree
+# Udacity BusinessAnalyst nanodegree
