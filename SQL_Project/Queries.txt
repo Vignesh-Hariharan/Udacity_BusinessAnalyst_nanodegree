@@ -1,0 +1,149 @@
+--1. Provide a report on the top selling artists for each year
+
+
+SELECT ArtistName, Year, MaxSpent
+
+FROM
+
+(
+SELECT Year, MAX(OverallSpent) MaxSpent, ArtistName
+FROM
+(
+SELECT strftime('%Y', i.InvoiceDate) Year,
+ar.Name ArtistName, COUNT(*) * t.UnitPrice OverallSpent
+
+FROM Track t
+JOIN Album a
+ON t.AlbumId = a.AlbumId
+JOIN Artist ar
+ON ar.ArtistId = a.ArtistId
+JOIN InvoiceLine il
+ON il.TrackId = t.TrackId
+JOIN invoice i
+ON i.InvoiceId = il.InvoiceId
+GROUP BY ArtistName, Year
+ORDER BY ArtistName DESC
+)
+GROUP BY  Year
+ORDER BY MaxSpent DESC
+)
+ORDER BY Year
+
+
+-------
+Output:
+-------
+
+ArtistName	Year	MaxSpent
+Iron Maiden	2009	33.66
+Iron Maiden	2010	34.65
+U2		2011	26.73
+Iron Maiden	2012	33.66
+Iron Maiden	2013	35.64
+
+
+
+
+
+--2. Provide a report on top 5 genres based on the revenues
+
+SELECT  g.Name , SUM(il.UnitPrice * il.Quantity) as revenues
+FROM Genre g
+JOIN Track t   
+ON t.GenreId = g.GenreId
+JOIN InvoiceLine il
+ON t.TrackId = il.TrackId
+JOIN Invoice i
+ON i.InvoiceId=il.InvoiceId
+GROUP BY g.Name
+ORDER BY revenues DESC
+LIMIT 5
+
+
+------
+Output:
+------
+
+Name			revenues
+Rock			826.650000000006
+Latin			382.140000000002
+Metal			261.360000000001
+Alternative & Punk	241.560000000001
+TV Shows		93.5299999999999
+
+
+-- 3. Provide details on total number of tracks in each playlist
+
+SELECT p.Name as PlayListName,
+COUNT(pt.playlistId) as TrackCount
+FROM PlaylistTrack as pt
+JOIN Playlist as p
+ON pt.Playlistid = p.playlistid
+GROUP BY p.name
+ORDER BY TrackCount DESC
+
+
+
+------
+Output:
+------
+
+PlayListName			TrackCount
+Music				6580
+90’s Music			1477
+TV Shows			426
+Classical			75
+Brazilian Music			39
+Heavy Metal Classic		26
+Classical 101 - Deep Cuts	25
+Classical 101 - Next Steps	25
+Classical 101 - The Basics	25
+Grunge				15
+Music Videos			1
+On-The-Go 1			1
+
+
+
+-- 4. How is the Purchase trend of tracks in top selling country?
+
+
+SELECT
+  STRFTIME('%Y', I.InvoiceDate) Year,
+  COUNT(IL.TrackId) "Number of Tracks Bought"
+FROM InvoiceLine IL
+JOIN Invoice I
+  ON I.InvoiceId = IL.InvoiceId
+WHERE I.BillingCountry = (
+
+
+SELECT BillingCountry
+
+FROM(
+
+SELECT i.BillingCountry, Sum(il.Quantity) TotalQuantity 
+
+FROM InvoiceLine il 
+JOIN Invoice i 
+ON il.InvoiceId = i.InvoiceId
+
+GROUP BY i.BillingCountry 
+ORDER BY TotalQuantity DESC
+LIMIT 1
+)
+)
+
+GROUP BY year
+ORDER BY year;
+
+
+
+------
+Output:
+------
+
+Year	Number of Tracks Bought
+2009	105
+2010	102
+2011	99
+2012	102
+2013	86
