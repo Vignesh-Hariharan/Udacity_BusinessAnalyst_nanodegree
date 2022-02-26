@@ -4,10 +4,10 @@ As part of Udacity's Business Analytics Nanodegree Program, we acquire the funda
 
 As part of this curriculum, I gained practical experience through working on the projects listed below.
 
-1. [1. Interpret Data Visualization:]
-2. [3. NYSE Data Analysis:]
-3. [4. Digital Music Database Query:]
-4. [5. Build Data Dashboards]
+1. Interpret Data Visualization:
+2. NYSE Data Analysis:
+3. Digital Music Database Query:
+4. Build Data Dashboards
 
 
 
