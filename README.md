@@ -4,6 +4,13 @@ As part of Udacity's Business Analytics Nanodegree Program, we acquire the funda
 
 As part of this curriculum, I gained practical experience through working on the projects listed below.
 
+1. [1. Interpret Data Visualization:]
+2. [3. NYSE Data Analysis:]
+3. [4. Digital Music Database Query:]
+4. [5. Build Data Dashboards]
+
+
+
 ## [1. Interpret Data Visualization:](https://github.com/Vignesh-Hariharan/Udacity_BusinessAnalytics_nanodegree/blob/main/Interpret_a_Data_Visualization.pdf)
 
 The aim of this project is to understand any data visualization and are able to find answers for certain questions by the visual elements of the dashboard well and accurately translate them into insights. It also involves in providing own insights, drawing strong conclusion by means of robust analysis. The data used was **LinkedIn Skills dashboard**.
