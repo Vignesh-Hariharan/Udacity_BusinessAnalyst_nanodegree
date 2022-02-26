@@ -1,4 +1,4 @@
-# Udacity BusinessAnalyst nanodegree
+# Udacity BusinessAnalytics nanodegree
 
 As part of Udacity's Business Analytics Nanodegree Program, we acquire the fundamental abilities required in any sector. These skills include data collecting, analysis, and presentation. Analyze data, create complex business models, and convey the results utilising tools such as SQL, Excel, and Tableau. 
 
